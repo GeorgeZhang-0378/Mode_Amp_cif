@@ -1,0 +1,6 @@
+i=1
+for f in frame*.cif; do
+    Q=$(awk -v i=$i 'BEGIN{printf "%.1f", -1.4 + (i-1)*0.1}')
+    mv "$f" "Q${Q}.cif"
+    ((i++))
+done

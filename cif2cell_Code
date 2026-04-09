@@ -1,0 +1,10 @@
+for f in Q*.cif; do
+    cif2cell "$f" -p castep --no-reduce -o "${f%.cif}.cell"
+done
+
+
+for f in Q*.cif; do
+    out="${f%.cif}.cell"
+    echo "Converting $f -> $out"
+    cif2cell "$f" -p castep --no-reduce -o "$out" || { echo "Failed on $f"; break; }
+done
